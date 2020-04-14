@@ -10,6 +10,11 @@ actions:
     command: rm -r /var/cache/apt/*
 
   - action: run
+    description: Unmount all mounted filesystems
+    chroot: no
+    command: umount mnt/*; umount mnt && umount mnt_outer/userdata/
+
+  - action: run
     description: Create bmap file
     postprocess: true
     command: bmaptool create {{ $image }} > {{ $image }}.bmap

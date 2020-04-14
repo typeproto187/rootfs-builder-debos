@@ -47,12 +47,17 @@ actions:
       architecture: {{ $architecture }}
 {{end}}
 
+  - action: run
+    chroot: true
+    description: Installing WLAN/BT firmware on rootfs
+    label: apt
+    command: apt install -y linux-firmware-rtlwifi linux-firmware-pine64-rtl8723-bt initramfs-tools-ubuntu-touch
+
   - action: overlay
     description: Copying kernel to rootfs
     origin: kernel
     source: .
     destination: /var/tmp/
-
 {{ if eq $debug "on" }}
   - action: run
     chroot: true
@@ -67,11 +72,6 @@ actions:
     command: dpkg -i /var/tmp/linux-image*pine64_*.deb
 {{ end }}
 
-  - action: run
-    chroot: true
-    description: Installing WLAN/BT firmware on rootfs
-    label: apt
-    command: apt install -y linux-firmware-rtlwifi linux-firmware-pine64-rtl8723-bt
 
   - action: run
     chroot: true
