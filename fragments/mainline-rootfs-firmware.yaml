@@ -14,4 +14,4 @@ actions:
     chroot: true
     description: Installing linux firmwares
     label: dpkg
-    command: dpkg -i /var/tmp/*.deb && rm /var/tmp/* -r
+    command: dpkg -i /var/tmp/linux-firmware_1.183.1_all.deb && rm /var/tmp/linux-firmware_1.183.1_all.deb
