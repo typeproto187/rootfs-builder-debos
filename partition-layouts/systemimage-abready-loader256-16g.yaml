@@ -9,6 +9,9 @@
 # * The cache partition is the same size as the system partition
 # This enables future a/b updating
 
+# Call me after your rootfs is ready for overlaying, I need to place an fstab
+# onto the rootfs.
+
 architecture: {{ $architecture }}
 actions:
   - action: image-partition
@@ -86,3 +89,7 @@ actions:
         fs: ext4
         start: 5400M
         end: 100%
+
+  - action: overlay
+    source: overlays/systemimage-abready/
+    destination: /
