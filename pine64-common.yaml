@@ -33,9 +33,9 @@ actions:
     filename: build.zip
     unpack: true
     compression: zip
-    
+
   - action: overlay
-    source: pine64/overlay
+    source: overlays/pine64/all_a64
     destination: /
 
   - action: run

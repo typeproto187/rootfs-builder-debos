@@ -79,7 +79,7 @@ actions:
 
 # Copy raspberry-pi folder with cmdline.txt and config.txt in /boot/firmware/
   - action: overlay
-    source: raspberry-pi/
+    source: overlays/raspberry-pi/
     destination: /
 
 # Copy ubportspiblobs_0.1-0.deb to the image file system

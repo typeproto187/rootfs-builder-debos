@@ -4,7 +4,7 @@
 architecture: {{ $architecture }}
 actions:
   - action: overlay
-    source: mods-overlay
+    source: overlays/all/
     description: Adding mods overlay
     destination: /
 

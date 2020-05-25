@@ -14,7 +14,7 @@ actions:
       debug: {{ $debug }}
 
   - action: overlay
-    source: pine64/pinetab
+    source: overlays/pine64/pinetab
     destination: /
 
   - action: image-partition

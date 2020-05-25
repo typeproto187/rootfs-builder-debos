@@ -14,7 +14,7 @@ actions:
       debug: {{ $debug }}
 
   - action: overlay
-    source: pine64/pinebook
+    source: overlays/pine64/pinebook
     destination: /
 
   - action: image-partition
