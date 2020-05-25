@@ -1,0 +1,88 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $image := or .image "systemimage-abready-loader256-16g.img" -}}
+{{- $mount_recovery := or .mount_recovery "on" -}}
+
+# Creates a 16GiB rootfs in the mainline system-image layout where:
+# * The bootloader partition, 'loader', is placed at sector 256
+# * There are _a and _b partitions for each of 'boot' and 'recovery'
+# * The system partition is 2.5GB large
+# * The cache partition is the same size as the system partition
+# This enables future a/b updating
+
+architecture: {{ $architecture }}
+actions:
+  - action: image-partition
+    description: Creating image
+    imagename: {{ $image }}
+    imagesize: 14.6GiB
+    partitiontype: gpt
+    mountpoints:
+      - mountpoint: /
+        partition: system
+
+      - mountpoint: /boot
+        partition: boot_a
+
+{{ if eq $mount_recovery "on" }}
+      - mountpoint: /recovery
+        partition: recovery_a
+{{ end }}
+
+      - mountpoint: /cache
+        partition: cache
+
+      - mountpoint: /data
+        partition: userdata
+
+    partitions:
+      - name: loader
+        fs: none
+        start: 131072B
+        end: 2097K
+
+      - name: scr
+        fs: none
+        start: 2098K
+        end: 3146K
+        flags: [ legacy_boot ]
+
+      - name: persist
+        fs: ext2
+        start: 3147K
+        end: 11.5M
+
+      - name: boot_a
+        fs: ext2
+        start: 11.6M
+        end: 78.6M
+
+      - name: boot_b
+        fs: ext2
+        start: 78.7M
+        end: 146M
+
+      - name: recovery_a
+        fs: ext2
+        start: 146M
+        end: 213M
+
+      - name: recovery_b
+        fs: ext2
+        start: 213M
+        end: 280M
+
+      # Future second system partition
+      - name: cache
+        fs: ext2
+        start: 280M
+        end: 2840M
+
+      - name: system
+        fs: ext4
+        start: 2840M
+        end: 5400M
+
+      - name: userdata
+        fs: ext4
+        start: 5400M
+        end: 100%
