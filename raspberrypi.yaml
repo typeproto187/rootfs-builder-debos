@@ -5,10 +5,9 @@
 
 architecture: {{ $architecture }}
 actions:
-# Include mainline-rootfs-core.yaml and in that file mainline-rootfs-mods.yaml is included
   - action: recipe
     description: Setup core rootfs
-    recipe: mainline-rootfs-core.yaml
+    recipe: fragments/mainline-rootfs-core.yaml
     variables:
       architecture: {{ $architecture }}
       debug: {{ $debug }}
@@ -16,7 +15,7 @@ actions:
   # Add the linux-firmware package
   - action: recipe
     description: Setup core rootfs
-    recipe: mainline-rootfs-firmware.yaml
+    recipe: fragments/mainline-rootfs-firmware.yaml
     variables:
       architecture: {{ $architecture }}
 
@@ -58,12 +57,6 @@ actions:
 # Deploying filesystem into image
   - action: filesystem-deploy
     description: Deploying filesystem into image
-
-# Setting egl libs to use mesa (https://www.mesa3d.org/egl.html)
-  - action: run
-    chroot: true
-    description: Setting egl libs to use mesa
-    script: scripts/enable-mesa.sh
 
 # Copy firmware/boot from github to the image /boot/modules
   - action: overlay

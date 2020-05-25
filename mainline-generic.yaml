@@ -6,11 +6,11 @@ architecture: {{ $architecture }}
 actions:
   - action: recipe
     description: Setup core rootfs
-    recipe: mainline-rootfs-core.yaml
+    recipe: fragments/mainline-rootfs-core.yaml
 
   - action: recipe
     description: Add linux-firmware package
-    recipe: mainline-rootfs-firmware.yaml
+    recipe: fragments/mainline-rootfs-firmware.yaml
     variables:
       architecture: {{ $architecture }}
 
@@ -51,11 +51,6 @@ actions:
     description: Install bootloader (grub)
     chroot: true
     command: sed -i "s/quiet splash/rw/g" /etc/default/grub && grub-install /dev/vda && update-grub
-
-  - action: run
-    chroot: true
-    description: Setting egl libs to use mesa (for common rootfs)
-    script: scripts/enable-mesa.sh
 
   - action: recipe
     description: Polish the image
