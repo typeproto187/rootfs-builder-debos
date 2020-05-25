@@ -114,7 +114,7 @@ actions:
 
   - action: recipe
     description: Polish the image
-    recipe: polish.yaml
+    recipe: fragments/polish.yaml
     variables:
       architecture: {{ $architecture }}
       image: {{ $image }}
