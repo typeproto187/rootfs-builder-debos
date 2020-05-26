@@ -28,7 +28,7 @@ actions:
 
   - action: download
     description: Fetch u-boot build
-    url: https://gitlab.com/pine64-org/u-boot/-/jobs/artifacts/master/download?job=build
+    url: https://gitlab.com/pine64-org/u-boot/-/jobs/artifacts/universalsuperbox/testing-new-partitions/download?job=build
     name: u-boot
     filename: build.zip
     unpack: true
