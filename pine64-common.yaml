@@ -36,7 +36,7 @@ actions:
 
   - action: overlay
     source: overlays/pine64/all_a64
-    destination: /
+    destination: /overlay
 
 {{ if eq $variant "mali" }}
   - action: recipe

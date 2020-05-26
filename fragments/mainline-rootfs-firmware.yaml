@@ -2,7 +2,9 @@
 
 architecture: {{ $architecture }}
 actions:
-# Copy linux-firmware_1.183.1_all.deb from the files directory, to temp location 
+# This overlay is done before filesystem-deploy (see filesystem-deploy.yaml)
+# but because its files are deleted in this recipe, there is no need to overlay
+# onto /overlay.
 # source: http://turul.canonical.com/pool/main/l/linux-firmware/
   - action: overlay
     description: Copying linux firmwares to rootfs

@@ -19,7 +19,7 @@ actions:
   - action: overlay
     source: ../overlays/all/
     description: Adding generic overlay
-    destination: /
+    destination: /overlay
 
 {{ if eq $debug "on" }}
   - action: run

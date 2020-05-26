@@ -36,8 +36,11 @@ actions:
         start: 200M
         end: 100%
 
-  - action: filesystem-deploy
-    description: Deploying filesystem into image
+  - action: recipe
+    recipe: fragments/filesystem-deploy.yaml
+    variables:
+      architecture: {{ $architecture }}
+      image: {{ $image }}
 
   - action: run
     description: Install deps

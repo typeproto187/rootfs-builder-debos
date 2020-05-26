@@ -54,9 +54,11 @@ actions:
         end: 100%
         flags: [ boot ]
 
-# Deploying filesystem into image
-  - action: filesystem-deploy
-    description: Deploying filesystem into image
+  - action: recipe
+    recipe: fragments/filesystem-deploy.yaml
+    variables:
+      architecture: {{ $architecture }}
+      image: {{ $image }}
 
 # Copy firmware/boot from github to the image /boot/modules
   - action: overlay

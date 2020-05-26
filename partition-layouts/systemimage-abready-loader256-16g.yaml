@@ -92,4 +92,4 @@ actions:
 
   - action: overlay
     source: overlays/systemimage-abready/
-    destination: /
+    destination: /overlay
