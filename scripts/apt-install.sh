@@ -8,7 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 apt update
-apt install -y $@
+apt install -y $@ || exit 1
 
 # Undo changes to work around debos fakemachine resolver
 rm /etc/resolv.conf

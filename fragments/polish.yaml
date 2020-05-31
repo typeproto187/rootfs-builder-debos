@@ -9,6 +9,11 @@ actions:
     chroot: true
     command: rm -r /var/cache/apt/*
 
+  - action: run
+    description: Fail if /overlay still exists (you need to use fragments/filesystem-deploy.yaml)
+    chroot: true
+    command: "test ! -e /overlay"
+
   # This must be the final 'chroot: true' action in the recipe, or else
   # /etc/localtime will be deleted by systemd-nspawn.
   # See https://github.com/go-debos/debos/issues/180

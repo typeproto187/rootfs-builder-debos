@@ -14,7 +14,7 @@ actions:
     variables:
       architecture: {{ $architecture }}
       image: {{ $image }}
-      mount_recovery: "off"
+      recovery_type_mount: "on"
 
   - action: run
     description: Manually set resolver in the container

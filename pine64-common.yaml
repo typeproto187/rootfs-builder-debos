@@ -46,6 +46,12 @@ actions:
       architecture: {{ $architecture }}
 {{end}}
 
+  - action: run
+    chroot: true
+    description: Install configuration for read-only rootfs' initramfs
+    label: apt
+    script: scripts/apt-install.sh initramfs-tools-ubuntu-touch
+
   - action: overlay
     description: Copying kernel to rootfs
     origin: kernel
@@ -63,7 +69,7 @@ actions:
     chroot: true
     description: Installing kernel on rootfs (no debug packages)
     label: dpkg
-    command: dpkg -i /var/tmp/linux-image*pine64_*.deb
+    command: dpkg -i /var/tmp/linux-image*pine64_*.deb && /bin/rm /var/tmp/* -r
 {{ end }}
 
   - action: run
